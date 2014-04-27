@@ -67,7 +67,7 @@ class CaptChaSpec extends PHPUnit_Framework_TestCase {
 	}
 	function testGetRandomPattern(){
 		$this->randomizer = new Randomizer();
-		$this->assertContains($this->randomizer->testGetRandomPattern(),[1,2]);
+		$this->assertContains($this->randomizer->getRandomPattern(),[1,2]);
 	}
 
 	function testGetRandomFirstOperant(){
@@ -84,11 +84,30 @@ class CaptChaSpec extends PHPUnit_Framework_TestCase {
 		$this->randomizer = new Randomizer();
 		$this->assertContains($this->randomizer->getRandomOperantant(),[1,2,3]);
 	}
-	
-	function testGetCaptchaSevice(){
-		$this->randomizer = new Randomizer();
-		$this->captCha = new CaptCha($this->testGetRandomPattern,$this->getRandomFirstOperant,$this->getRandomOperantant,$this->getRandomSecondOperant);
 
+	function testGetCaptchaSevice(){
+		$captChaService = new captChaService();
+		$stub = $this->getMock('Randomizer');
+        
+        $stub->expects($this->any())
+             ->method('getRandomPattern')
+             ->will($this->returnValue(1));
+
+        $stub->expects($this->any())
+             ->method('getRandomFirstOperant')
+             ->will($this->returnValue(1));
+
+        $stub->expects($this->any())
+             ->method('getRandomSecondOperant')
+             ->will($this->returnValue(1));
+
+        $stub->expects($this->any())
+             ->method('getRandomOperantant')
+             ->will($this->returnValue(1));
+
+        $captChaService->setRandomizer($stub);
+
+		$this->assertEquals(new CaptCha(1,1,1,1),$captChaService->getCaptcha());
 	}
 
 }

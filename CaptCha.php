@@ -1,7 +1,7 @@
 <?php
 
 class Randomizer {
-	function testGetRandomPattern() {
+	function getRandomPattern() {
 		return rand(1,2);
 	}
 	function getRandomFirstOperant() {
@@ -12,6 +12,19 @@ class Randomizer {
 	}
 	function getRandomOperantant() {
 		return rand(1,3);
+	}
+}
+class CaptChaService {
+	public $randomizer;
+
+	function setRandomizer($randomizerStub){
+		$this->randomizer = $randomizerStub;
+	}
+	function getCaptcha(){
+		return new CaptCha($this->randomizer->getRandomPattern()
+			,$this->randomizer->getRandomFirstOperant()
+			,$this->randomizer->getRandomOperantant()
+			,$this->randomizer->getRandomSecondOperant());
 	}
 }
 
