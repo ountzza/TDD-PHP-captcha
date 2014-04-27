@@ -84,5 +84,11 @@ class CaptChaSpec extends PHPUnit_Framework_TestCase {
 		$this->randomizer = new Randomizer();
 		$this->assertContains($this->randomizer->getRandomOperantant(),[1,2,3]);
 	}
+	
+	function testGetCaptchaSevice(){
+		$this->randomizer = new Randomizer();
+		$this->captCha = new CaptCha($this->testGetRandomPattern,$this->getRandomFirstOperant,$this->getRandomOperantant,$this->getRandomSecondOperant);
+
+	}
 
 }
