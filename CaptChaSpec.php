@@ -5,16 +5,6 @@ require("CaptCha.php");
 class CaptChaSpec extends PHPUnit_Framework_TestCase {
 	public $captCha;
 	public $randomizer;
-
-	function testGetRandomPattern(){
-		$this->randomizer = new Randomizer();
-		$this->assertContains(1,[1,2]);
-	}
-
-	function testGetRandomFirstOperant(){
-		$this->randomizer = new Randomizer();
-		$this->assertEquals(1,$this->randomizer->getRandomFirstOperant());
-	}
 	
 	function testGetFirstOperant(){
 		$this->captCha = new CaptCha("1","1","1","1");
@@ -75,6 +65,24 @@ class CaptChaSpec extends PHPUnit_Framework_TestCase {
 		$this->captCha = new CaptCha("2","3","2","2");
 		$this->assertEquals("3*Two = 6",$this->captCha->toString());
 	}
+	function testGetRandomPattern(){
+		$this->randomizer = new Randomizer();
+		$this->assertContains($this->randomizer->testGetRandomPattern(),[1,2]);
+	}
 
+	function testGetRandomFirstOperant(){
+		$this->randomizer = new Randomizer();
+		$this->assertContains($this->randomizer->getRandomFirstOperant(),[1,2,3,4,5,6,7,8,9]);
+	}
+
+	function testGetRandomSecondOperant(){
+		$this->randomizer = new Randomizer();
+		$this->assertContains($this->randomizer->getRandomSecondOperant(),[1,2,3,4,5,6,7,8,9]);
+	}
+
+	function testGetRandomOperantant(){
+		$this->randomizer = new Randomizer();
+		$this->assertContains($this->randomizer->getRandomOperantant(),[1,2,3]);
+	}
 
 }

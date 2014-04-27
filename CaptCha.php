@@ -2,12 +2,17 @@
 
 class Randomizer {
 	function testGetRandomPattern() {
-		return 1;
+		return rand(1,2);
 	}
 	function getRandomFirstOperant() {
-		return 1;
+		return rand(1,9);
 	}
-
+	function getRandomSecondOperant() {
+		return rand(1,9);
+	}
+	function getRandomOperantant() {
+		return rand(1,3);
+	}
 }
 
 class CaptCha {
