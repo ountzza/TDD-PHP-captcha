@@ -1,5 +1,15 @@
 <?php
 
+class Randomizer {
+	function testGetRandomPattern() {
+		return 1;
+	}
+	function getRandomFirstOperant() {
+		return 1;
+	}
+
+}
+
 class CaptCha {
 	private $pattern;
 	private $firstOperant;
